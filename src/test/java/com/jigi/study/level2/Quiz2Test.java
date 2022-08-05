@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class quiz2Test {
+class Quiz2Test {
 
     @Test
     void solution1() {
