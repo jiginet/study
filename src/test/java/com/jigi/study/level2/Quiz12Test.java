@@ -29,18 +29,16 @@ public class Quiz12Test {
         System.out.println("3진수 = " + Integer.toString(a, 3));
         System.out.println("8진수 = " + Integer.toString(a, 8));
         System.out.println("2진수 = " + Integer.toString(a, 2));
-//        System.out.println("진수 = " + Integer.toString(99999999, 3));
     }
 
     @Test
     void prime() {
         Quiz12 quiz = new Quiz12();
-
-        assertThat(quiz.isPrime(5)).isTrue();
         assertThat(quiz.isPrime(1)).isFalse();
         assertThat(quiz.isPrime(2)).isTrue();
         assertThat(quiz.isPrime(3)).isTrue();
         assertThat(quiz.isPrime(4)).isFalse();
+        assertThat(quiz.isPrime(5)).isTrue();
     }
 
     @Test

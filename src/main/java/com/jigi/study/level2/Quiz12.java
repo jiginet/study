@@ -23,6 +23,7 @@ public class Quiz12 {
         return answer;
     }
 
+    // 소수확인하는 가장 효율적인 방법
     public boolean isPrime(long n) {
         if (n == 1) {
             return false;
