@@ -1,32 +1,30 @@
 package com.jigi.study.level2;
 
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
 
+/**
+ * H-index
+ */
 public class Quiz2 {
     public int solution(int[] citations) {
-        List<Integer> list = Arrays.stream(citations)
-                .boxed()
-                .sorted(Collections.reverseOrder())
-                .collect(Collectors.toList());
+        int n = citations.length;
+        Arrays.sort(citations);
 
-        final int size = citations.length;
-
-        int answer = 0;
-        for (int i = 0; i < list.size(); i++) {
+        int remain = n;
+        int h = 0;
+        for (int i = 0; i < n; i++) {
+            remain--;
             if (i == 0) {
-                answer = list.get(i);
-                continue;
-            }
-            if (answer > list.get(i)) {
-                answer = list.get(i);
-            }
-            if (i + 1 >= answer) {
-                break;
+                h = Math.min(citations[i], n);
+            } else {
+                if (citations[i] <= remain + 1) {
+                    h = citations[i];
+                } else {
+                    h = Math.max(Math.min(remain + 1, citations[i]), h);
+                }
             }
         }
-        return answer > size ? size : answer;
+
+        return h;
     }
 }
