@@ -16,8 +16,6 @@ public class Quiz20Test {
         Quiz20 quiz = new Quiz20();
         assertThat(quiz.solution(1)).isEqualTo(1);
         assertThat(quiz.solution(2)).isEqualTo(2);
-
-
     }
 
     @Test
