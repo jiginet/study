@@ -30,7 +30,6 @@ public class Quiz20Test {
     @Test
     @DisplayName("서로다른 배열의 값이 순서와 값 모두 같으면, 같은 배열이다.")
     void arrayEquals() {
-
         int[] a = {1, 2, 3};
         int[] b = {1, 2, 3};
         assertThat(Arrays.equals(a, b)).isTrue();

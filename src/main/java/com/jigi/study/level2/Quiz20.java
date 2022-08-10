@@ -1,62 +1,27 @@
 package com.jigi.study.level2;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.math.BigInteger;
 
 /**
- * 멀리뛰기 : 경우의 수 구하기 : 아직 풀지 못함(ㅠㅠ)
+ * 멀리뛰기 : 피보나치 수
  */
 public class Quiz20 {
 
-    private Set<String> uniqueCase = new HashSet<>();
-
     public long solution(int n) {
-        if (n < 3) {
-            return n;
-        }
-        int[] numbers = getPermutationNumbers(n);
-        uniqueCase.clear();
-        permutation(numbers, new int[n], new boolean[numbers.length], 0, n);
-        return uniqueCase.size() % 1234567;
+        BigInteger[] results = new BigInteger[n + 1];
+        BigInteger result = getFibonacciNumber(n, results);
+        return result.divideAndRemainder(BigInteger.valueOf(1_234_567))[1].intValue();
     }
 
-    private void permutation(int[] numbers, int[] result, boolean[] visited, int depth, final int expectedNumber) {
-        int sum = 0;
-        StringBuilder sumString = new StringBuilder();
-        for (int i = 0; i < result.length; i++) {
-            if (visited[i]) {
-                sum += result[i];
-                sumString.append(result[i]);
-            }
+    private BigInteger getFibonacciNumber(int n, BigInteger[] results) {
+        if (results[n] != null) {
+            return results[n];
         }
-        if (sum == expectedNumber) {
-            uniqueCase.add(sumString.toString());
-            return;
+        if (n <= 2) {
+            results[n] = BigInteger.valueOf(n);
+            return results[n];
         }
-        if (sum > expectedNumber || depth == expectedNumber) {
-            return;
-        }
-
-        for (int i = 0; i < numbers.length; i++) {
-            if (!visited[i]) {
-                visited[i] = true;
-                result[depth] = numbers[i];
-                permutation(numbers, result, visited, depth + 1, expectedNumber);
-                visited[i] = false;
-            }
-        }
-    }
-
-    private int[] getPermutationNumbers(int n) {
-        int arraySize = n + n / 2;
-        int[] numbers = new int[arraySize];
-        for (int i = 0; i < arraySize; i++) {
-            if (i < n) {
-                numbers[i] = 1;
-                continue;
-            }
-            numbers[i] = 2;
-        }
-        return numbers;
+        results[n] = getFibonacciNumber(n - 1, results).add(getFibonacciNumber(n - 2, results));
+        return results[n];
     }
 }
