@@ -2,28 +2,26 @@ package com.jigi.study.level2;
 
 import java.math.BigInteger;
 
+/**
+ * 피보나치 수
+ */
 public class Quiz3 {
+
     public int solution(int n) {
-        if (n == 2) {
-            return 3;
+        BigInteger[] results = new BigInteger[n + 1];
+        BigInteger result = getFibonacciNumber(n, results);
+        return result.divideAndRemainder(BigInteger.valueOf(1_234_567))[1].intValue();
+    }
+
+    private BigInteger getFibonacciNumber(int n, BigInteger[] results) {
+        if (results[n] != null) {
+            return results[n];
         }
-        if (n == 4) {
-            return 11;
+        if (n <= 2) {
+            results[n] = BigInteger.ONE;
+            return BigInteger.ONE;
         }
-        BigInteger a = BigInteger.valueOf(3);
-        BigInteger b = BigInteger.valueOf(11);
-        BigInteger d = BigInteger.valueOf(11);
-        for (int i = 6; i <= n; i = i + 2) {
-            BigInteger c;
-            if (i % 4 == 0) {
-                int div = i / 4;
-                c = BigInteger.valueOf(div).multiply(d)  ;
-            } else {
-                c = a.add(b);
-            }
-            a = c;
-            b = BigInteger.valueOf(3);
-        }
-        return b.divideAndRemainder(BigInteger.valueOf(1_000_000_007))[1].intValue();
+        results[n] = getFibonacciNumber(n - 1, results).add(getFibonacciNumber(n - 2, results));
+        return results[n];
     }
 }
