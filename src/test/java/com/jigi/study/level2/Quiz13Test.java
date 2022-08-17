@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 
 public class Quiz13Test {
 
-
     @Test
     void solution() {
         Quiz13 quiz = new Quiz13();
