@@ -12,5 +12,9 @@ public class Quiz15Test {
         assertThat(quiz.solution("baabaa")).isEqualTo(1);
         assertThat(quiz.solution("cdcd")).isEqualTo(0);
         assertThat(quiz.solution("cddcaacc")).isEqualTo(1);
+        assertThat(quiz.solution("cbadeffedabc")).isEqualTo(1);
+        assertThat(quiz.solution("cbadefedabc")).isEqualTo(0);
+        assertThat(quiz.solution("a")).isEqualTo(0);
+        assertThat(quiz.solution("")).isEqualTo(1);
     }
 }
