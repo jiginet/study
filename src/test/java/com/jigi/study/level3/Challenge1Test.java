@@ -41,15 +41,14 @@ class Challenge1Test {
         queue.offer(1);
         queue.offer(2);
 
-
         // 우선 순위가 가장 높은 값 출력
         assertThat(queue.peek()).isEqualTo(1);
 
-        // 우선 순위가 가장 높은 값 반환
+        // 우선 순위가 가장 높은 값 반환하고, 큐에서 값을 제거
         assertThat(queue.poll()).isEqualTo(1);
         assertThat(queue.poll()).isEqualTo(2);
 
-        // 우선 순위가 가장 높은 값 반환(poll 과 같은 기능)
+        // 우선 순위가 가장 높은 값 반환하고, 큐에서 값을 제거(poll 과 같은 기능)
         assertThat(queue.remove()).isEqualTo(3);
 
         // 지정된 원소값을 제거, 제거할 수 있으면 true, 없으면 false 반환

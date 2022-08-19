@@ -11,7 +11,7 @@ public class Challenge1 {
     public int[] solution(String[] operations) {
         DoublePriorityQueue queue = new DoublePriorityQueue();
         for (int i = 0; i < operations.length; i++) {
-            queue.execute(new Operation(operations[i]));
+            queue.offer(new Operation(operations[i]));
         }
         return queue.pop();
     }
@@ -21,7 +21,7 @@ public class Challenge1 {
         private final PriorityQueue<Integer> forwardQueue = new PriorityQueue<>();
         private final PriorityQueue<Integer> reverseQueue = new PriorityQueue<>(Comparator.reverseOrder());
 
-        public void execute(Operation operation) {
+        public void offer(Operation operation) {
             if (operation.isInsert()) {
                 forwardQueue.offer(operation.getOperand());
                 reverseQueue.offer(operation.getOperand());
