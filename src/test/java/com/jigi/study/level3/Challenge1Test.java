@@ -18,7 +18,7 @@ class Challenge1Test {
     }
 
     @Test
-    @DisplayName("큐가 비어 있지않으면 최대값, 최솟값을 반환한다.")
+    @DisplayName("큐가 비어 있지않으면 최댓값, 최솟값을 반환한다.")
     void notEmptyQueue() {
         Challenge1 challenge = new Challenge1();
         String[] operations = {"I -45", "I 653", "D 1", "I -642", "I 45", "I 97", "D 1", "D -1", "I 333"};

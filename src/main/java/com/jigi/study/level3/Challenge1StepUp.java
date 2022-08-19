@@ -1,12 +1,11 @@
 package com.jigi.study.level3;
 
-import java.util.Comparator;
-import java.util.PriorityQueue;
+import java.util.TreeMap;
 
 /**
- * 이중 우선순위 큐 - PriorityQueue 이용 ( I : 숫자삽입, D 1 : 최댓값 삭제, D -1 : 최솟값 삭제 )
+ * 이중 우선순위 큐 - TreeMap 이용 ( I : 숫자삽입, D 1 : 최댓값 삭제, D -1 : 최솟값 삭제 )
  */
-public class Challenge1 {
+public class Challenge1StepUp {
 
     public int[] solution(String[] operations) {
         DoublePriorityQueue queue = new DoublePriorityQueue();
@@ -18,29 +17,25 @@ public class Challenge1 {
 
     private class DoublePriorityQueue {
 
-        private final PriorityQueue<Integer> forwardQueue = new PriorityQueue<>();
-        private final PriorityQueue<Integer> reverseQueue = new PriorityQueue<>(Comparator.reverseOrder());
+        private final TreeMap<Integer, Integer> treeMap = new TreeMap<>();
 
         public void offer(Operation operation) {
             if (operation.isInsert()) {
-                forwardQueue.offer(operation.getOperand());
-                reverseQueue.offer(operation.getOperand());
+                treeMap.put(operation.getOperand(), operation.getOperand());
                 return;
             }
             if (operation.isDeleteMax()) {
-                Integer max = reverseQueue.poll();
-                forwardQueue.remove(max);
+                treeMap.pollLastEntry();
                 return;
             }
-            Integer min = forwardQueue.poll();
-            reverseQueue.remove(min);
+            treeMap.pollFirstEntry();
         }
 
         public int[] pop() {
-            if (forwardQueue.isEmpty()) {
+            if (treeMap.isEmpty()) {
                 return new int[]{0, 0};
             }
-            return new int[]{reverseQueue.peek(), forwardQueue.peek()};
+            return new int[]{treeMap.lastKey(), treeMap.firstKey()};
         }
     }
 
